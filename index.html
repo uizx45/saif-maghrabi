@@ -246,18 +246,19 @@
     }
     .glass-card:hover .glare { opacity: 0.3; }
 
-    /* ===== WHAT I DO ===== */
+    /* ===== WHAT I DO - THICKER BORDERS (2px) ===== */
     .whatido-grid { max-width: 920px; margin: 0 auto; }
     .whatido-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; max-width: 920px; margin: 0 auto; }
     .whatido-card {
       position: relative; border-radius: 24px; padding: 2px; overflow: hidden;
       transition: all 0.4s var(--ease-elastic); transform-style: preserve-3d;
+      border: 1px solid transparent;
     }
     .whatido-card::before { content: ''; position: absolute; inset: 0; border-radius: 24px; padding: 2px; pointer-events: none; opacity: 0; transition: opacity 0.4s; }
     .whatido-card:nth-child(1)::before { background: linear-gradient(135deg, #667eea, #764ba2, #667eea); }
     .whatido-card:nth-child(2)::before { background: linear-gradient(135deg, #f093fb, #f5576c, #f093fb); }
     .whatido-card:hover::before { opacity: 1; }
-    .whatido-card:hover { transform: translateY(-8px); }
+    .whatido-card:hover { transform: translateY(-6px); }
     .whatido-card-inner {
       position: relative; z-index: 1; background: rgba(10,10,26,0.95);
       backdrop-filter: blur(16px); border-radius: 22px; padding: 2rem; height: 100%;
@@ -343,11 +344,12 @@
     .edu-text h4 { color: var(--glow-cyan); font-size: 1.15rem; margin-bottom: 0.3rem; }
     .edu-text p { color: var(--text-muted); font-size: 0.98rem; }
 
-    /* ===== TECHNOLOGY CARDS ===== */
+    /* ===== TECHNOLOGY CARDS - THICKER BORDERS (2px) ===== */
     .tech-bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.6rem; max-width: 1000px; margin: 0 auto; }
     .tech-card {
       position: relative; border-radius: 24px; padding: 2px; overflow: hidden;
       transition: all 0.4s var(--ease-elastic); transform-style: preserve-3d;
+      border: 1px solid transparent;
     }
     .tech-card::before { content: ''; position: absolute; inset: 0; border-radius: 24px; padding: 2px; pointer-events: none; opacity: 0; transition: opacity 0.4s; }
     .tech-card:nth-child(1)::before { background: linear-gradient(135deg, #ff6b6b, #ff007f, #ff6b6b); }
@@ -356,6 +358,7 @@
     .tech-card:nth-child(4)::before { background: linear-gradient(135deg, #a855f7, #6366f1, #a855f7); }
     .tech-card:nth-child(5)::before { background: linear-gradient(135deg, #00f5d4, #00bbf9, #00f5d4); }
     .tech-card:hover::before { opacity: 1; }
+    .tech-card:hover { transform: translateY(-4px); }
     .tech-card-inner {
       position: relative; z-index: 1; background: rgba(10, 10, 26, 0.95);
       backdrop-filter: blur(16px); border-radius: 22px; padding: 1.8rem; height: 100%;
@@ -593,18 +596,79 @@
     .expandable-content { opacity: 0; max-height: 0; overflow: hidden; transition: all 0.7s var(--ease-smooth); }
     .expandable-content.expanded { opacity: 1; max-height: 1000px; }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== RESPONSIVE - PROPORTIONAL CARD SIZES + THICKER BORDERS (2px) ===== */
     @media (max-width: 600px) {
-      .glass-card { padding: 2rem 1.5rem; margin: 1.6rem 1rem; border-radius: 22px; }
-      .scroll-indicator { top: 12px; width: 40px; height: 40px; }
-      .footer-content { gap: 2.2rem; }
+      /* Main glass cards - proper side margins */
+      .glass-card { 
+        padding: 1.8rem 1.4rem; 
+        margin: 1.5rem auto; 
+        max-width: calc(100% - 2rem);
+        border-radius: 20px; 
+      }
+      
+      /* What I Do cards - THICKER BORDERS + PROPORTIONAL SIZES */
+      .whatido-cards { 
+        gap: 1.2rem; 
+        max-width: calc(100% - 2rem);
+        margin: 0 auto;
+      }
+      .whatido-card { 
+        padding: 2px; 
+        border-radius: 22px;
+      }
+      .whatido-card-inner { 
+        padding: 1.6rem 1.2rem; 
+        border-radius: 20px;
+      }
+      .whatido-card-icon { width: 50px; height: 50px; font-size: 1.3rem; }
+      .whatido-card-title { font-size: 1.25rem; }
+      .whatido-card-desc { font-size: 0.9rem; }
+      
+      /* Experience cards - single column with spacing */
+      .experience-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.2rem;
+        max-width: calc(100% - 2rem);
+        margin: 0 auto;
+      }
+      .exp-card { 
+        padding: 1.6rem 1.2rem; 
+        border-radius: 20px;
+      }
+      
+      /* Technologies cards - THICKER BORDERS + PROPORTIONAL SIZES */
+      .tech-bento { 
+        grid-template-columns: 1fr; 
+        gap: 1.2rem;
+        max-width: calc(100% - 2rem);
+        margin: 0 auto;
+      }
+      .tech-card { 
+        padding: 2px; 
+        border-radius: 22px;
+      }
+      .tech-card.featured { grid-column: span 1 !important; }
+      .tech-card-inner { 
+        padding: 1.5rem 1.2rem; 
+        border-radius: 20px;
+      }
+      .tech-icon { width: 48px; height: 48px; font-size: 1.3rem; }
+      .tech-card-title { font-size: 1.25rem; }
+      .tech-tag { padding: 0.4rem 0.8rem; font-size: 0.82rem; }
+      
+      /* Arabic RTL adjustments for lists */
+      body.arabic .task-flow li { padding-left: 0; padding-right: 2rem; }
+      body.arabic .task-flow li::before { left: auto; right: 2px; }
+      
+      /* Other mobile adjustments */
+      .scroll-indicator { top: 12px; width: 36px; height: 36px; }
+      .footer-content { gap: 2rem; }
       .resume-btns { flex-direction: column; align-items: center; }
-      .resume-btn { width: 100%; max-width: 280px; }
+      .resume-btn { width: calc(100% - 1rem); max-width: 280px; }
       h1 { font-size: clamp(2.2rem, 8vw, 3.5rem) !important; }
-      .exp-card { padding: 2rem 1.5rem; }
       .courses-grid { grid-template-columns: 1fr; }
       .job-titles-grid { grid-template-columns: repeat(2, 1fr); }
-      .resume-main-icon { width: 65px; height: 65px; font-size: 1.6rem; }
+      .resume-main-icon { width: 60px; height: 60px; font-size: 1.5rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
